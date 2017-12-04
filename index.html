@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Trivia Game</title>
+	
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+	<!-- Jquery -->
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+	
+	<!-- Bootstrap Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+	<!-- Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2">
+				<div id="gv-category" class="category">
+					Global View
+				</div>
+				<div id="gv-category-details" class="category-details">
+					(geography, space, global cultures, etc.)
+					<br>
+					<br>
+					<button type="button" class="btn btn-primary btn-lg" role="button">Start</button>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div id="ww-category" class="category">
+					The Written Word
+				</div>
+				<div id="ww-category-details" class="category-details">
+					(books, magazines, comic books, etc.)
+					<br>
+					<br>
+					<button type="button" class="btn btn-primary btn-lg" role="button">Start</button>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div id="ss-category" class="category">
+					Sound & Screen
+				</div>
+				<div id="ss-category-details" class="category-details">
+					(movies, music and more)
+					<br>
+					<br>
+					<button type="button" class="btn btn-primary btn-lg" role="button">Start</button>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div id="inv-category" class="category">
+					Innovations
+				</div>
+				<div id="inv-category-details" class="category-details">
+					(inventions, medical breakthrouhgs, electronics, etc.)
+					<br>
+					<br>
+					<button type="button" class="btn btn-primary btn-lg" role="button">Start</button>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div id="nws-category" class="category">
+					News
+				</div>
+				<div id="nws-category-details" class="category-details">
+					(20 years worth of headlines)
+					<br>
+					<br>
+					<button type="button" class="btn btn-primary btn-lg" role="button">Start</button>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div id="gt-category" class="category">
+					Game Time
+				</div>
+				<div id="gt-category-details" class="category-details">
+					(sports, games, interactive entertainment, etc.)
+					<br>
+					<br>
+					<button type="button" class="btn btn-primary btn-lg" role="button">Start</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="countdown"></div>
+	
+
+
+	<script type="text/javascript" src="assets/javascript/questions.js"></script>
+	<script type="text/javascript" src="assets/javascript/app.js"></script>
+	<script>startGame();</script>
+</body>
+</html>

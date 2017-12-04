@@ -1,0 +1,12 @@
+#countdown {
+	font-family: 'Poiret One', cursive;
+	font-size: 2em;
+}
+
+.category {
+	cursor: pointer;
+}
+
+.category-details {
+	display: none;
+}
