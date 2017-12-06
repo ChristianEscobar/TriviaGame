@@ -33,7 +33,8 @@
 					(geography, space, global cultures, etc.)
 					<br>
 					<br>
-					<button type="button" id="global-view" class="btn btn-primary btn-lg" role="button">Start</button>
+					<button type="button" data-name="global-view" class="btn btn-primary btn-lg category-start-btn" role="button">Start</button>
+					<div id="gv-summary"></div>
 				</div>
 			</div>
 			<div class="col-md-2">
@@ -44,7 +45,8 @@
 					(books, magazines, comic books, etc.)
 					<br>
 					<br>
-					<button type="button" id="written-word" class="btn btn-primary btn-lg" role="button">Start</button>
+					<button type="button" data-name="written-word" class="btn btn-primary btn-lg category-start-btn" role="button">Start</button>
+					<div id="ww-summary"></div>
 				</div>
 			</div>
 			<div class="col-md-2">
@@ -55,7 +57,8 @@
 					(movies, music and more)
 					<br>
 					<br>
-					<button type="button" id="sound-and-screen" class="btn btn-primary btn-lg" role="button">Start</button>
+					<button type="button" data-name="sound-and-screen" class="btn btn-primary btn-lg category-start-btn" role="button">Start</button>
+					<div id="ss-summary"></div>
 				</div>
 			</div>
 			<div class="col-md-2">
@@ -66,7 +69,8 @@
 					(inventions, medical breakthrouhgs, electronics, etc.)
 					<br>
 					<br>
-					<button type="button" id="innovations" class="btn btn-primary btn-lg" role="button">Start</button>
+					<button type="button" data-name="innovations" class="btn btn-primary btn-lg category-start-btn" role="button">Start</button>
+					<div id="inv-summary"></div>
 				</div>
 			</div>
 			<div class="col-md-2">
@@ -77,7 +81,8 @@
 					(20 years worth of headlines)
 					<br>
 					<br>
-					<button type="button" id="news" class="btn btn-primary btn-lg" role="button">Start</button>
+					<button type="button" data-name="news" class="btn btn-primary btn-lg category-start-btn" role="button">Start</button>
+					<div id="nws-summary"></div>
 				</div>
 			</div>
 			<div class="col-md-2">
@@ -88,19 +93,29 @@
 					(sports, games, interactive entertainment, etc.)
 					<br>
 					<br>
-					<button type="button" id="game-time" class="btn btn-primary btn-lg" role="button">Start</button>
+					<button type="button" data-name="game-time" class="btn btn-primary btn-lg category-start-btn" role="button">Start</button>
+					<div id="gt-summary"></div>
 				</div>
 			</div>
+		</div>
+		
+		<br><br><br>
+		
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<div id="game-arena">
+					<div id="category-summary"></div>
+					<div id="countdown"></div>
+					<div id="question"></div>
+					<div id="result"></div>
+				</div>
+			</div>
+			<div class="col-md-2"></div>
 		</div>
 	</div>
 
 
-	<div id="countdown"></div>
-	
-
-
-	<script type="text/javascript" src="assets/javascript/questions.js"></script>
 	<script type="text/javascript" src="assets/javascript/app.js"></script>
-	<script>startGame();</script>
 </body>
 </html>

@@ -10,3 +10,13 @@
 .category-details {
 	display: none;
 }
+
+.choice:hover {
+	background-color: red;
+	cursor: pointer;
+}
+
+.summary-button { 
+	float: left; 
+	margin-left: 5px;
+}
