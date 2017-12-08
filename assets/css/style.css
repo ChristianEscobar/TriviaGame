@@ -1,10 +1,41 @@
-#countdown {
-	font-family: 'Poiret One', cursive;
-	font-size: 2em;
+#countdown-container {
+	background-color: black;
+}
+
+#question {
+	background-image: url('../images/question-bg.png');
+	width: 765px;
+	height: 131px;
+	background-repeat: no-repeat;
+	animation-name: slideInFromLeft;
+	animation-duration: 4s;
+	position: relative;
+}
+
+.choice {
+	background-image: url('../images/choice-bg.png');
+	width: 363px;
+	height: 69px;
+	margin: 0;
+	background-repeat: no-repeat;
+	position: relative;
+}
+
+.countdown-img {
+	display: block;
+    margin: auto;
+	width: 300px;
+	height: 300px;
 }
 
 .category {
 	cursor: pointer;
+	text-align: center;
+}
+
+.category:hover {
+	border: 1px solid #33ccff;
+	background-color: #e6f9ff;
 }
 
 .category-details {
@@ -19,4 +50,12 @@
 .summary-button { 
 	float: left; 
 	margin-left: 5px;
+}
+
+@keyframes slideInFromLeft {
+    0%   {left:-600px; top:0px;}
+    25%  {left:200px; top:0px;}
+    50%  {left:200px; top:200px;}
+    /*75%  {left:0px; top:200px;}*/
+    /*100% {left:0px; top:0px;}*/
 }

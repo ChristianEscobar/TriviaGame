@@ -213,6 +213,43 @@ var _gameTime = {
 		correctAnswer: 'Magic Johnson',
 	}],
 };
+
+var counter = {
+	images: [
+		'./assets/images/counter-0.png',
+		'./assets/images/counter-1.png',
+		'./assets/images/counter-2.png',
+		'./assets/images/counter-3.png',
+		'./assets/images/counter-4.png',
+		'./assets/images/counter-5.png',
+		'./assets/images/counter-6.png',
+		'./assets/images/counter-7.png',
+		'./assets/images/counter-8.png',
+		'./assets/images/counter-9.png',
+		'./assets/images/counter-10.png',
+		'./assets/images/counter-11.png',
+		'./assets/images/counter-12.png',
+		'./assets/images/counter-13.png',
+		'./assets/images/counter-14.png',
+		'./assets/images/counter-15.png',
+		'./assets/images/counter-16.png',
+		'./assets/images/counter-17.png',
+		'./assets/images/counter-18.png',
+		'./assets/images/counter-19.png',
+		'./assets/images/counter-20.png',
+		'./assets/images/counter-21.png',
+		'./assets/images/counter-22.png',
+		'./assets/images/counter-23.png',
+		'./assets/images/counter-24.png',
+		'./assets/images/counter-25.png',
+		'./assets/images/counter-26.png',
+		'./assets/images/counter-27.png',
+		'./assets/images/counter-28.png',
+		'./assets/images/counter-29.png',
+		'./assets/images/counter-30.png',
+		'./assets/images/counter-time-out.png'
+	],
+};
 // Category Objects (Global)
 
 // Global variables
@@ -241,22 +278,22 @@ function startCategory() {
 	var category = $(this).attr('data-name');
 
 	switch(category) {
-		case "global-view":
+		case 'global-view':
 			_currentCategoryObj = _globalView;
 			break;
-		case "written-word":
+		case 'written-word':
 			_currentCategoryObj = _writtenWord;
 			break;
-		case "sound-and-screen":
+		case 'sound-and-screen':
 			_currentCategoryObj = _soundAndScreen;
 			break;
-		case "innovations":
+		case 'innovations':
 			_currentCategoryObj = _innovations;
 			break;
-		case "news":
+		case 'news':
 			_currentCategoryObj = _news;
 			break;
-		case "game-time":
+		case 'game-time':
 			_currentCategoryObj = _gameTime;
 			break;
 	}
@@ -368,7 +405,7 @@ function startCountdown() {
 
 	clearInterval(_intervalId);
 
-	$("#countdown").html(_secondsRemaining);
+	setCounterImage(false);
 
 	_intervalId = setInterval(countdown, 1000);
 }
@@ -377,11 +414,12 @@ function startCountdown() {
 function countdown() {
 	_secondsRemaining--;
 
-	$("#countdown").html(_secondsRemaining);
+	setCounterImage(false);
 
-	if(_secondsRemaining === 0) {
+	if(_secondsRemaining < 0) {
+		setCounterImage(true);
+
 		clearInterval(_intervalId);
-		$("#countdown").html('Time\'s Up!');
 
 		// Update unanswered total and display an new question
 		_currentCategoryObj.unanswered++;
@@ -389,6 +427,19 @@ function countdown() {
 		$('#result').html('Time\'s Up Slick!');
 
 		nextQuestion();
+	}
+}
+
+function setCounterImage(isTimeOut) {
+	var counterImage = $('<img/>');
+	counterImage.addClass('countdown-img');
+
+	if(isTimeOut) {
+		counterImage.attr('src', counter.images[31]);
+		$('#countdown-container').html(counterImage);
+	} else {
+		counterImage.attr('src', counter.images[_secondsRemaining]);
+		$('#countdown-container').html(counterImage);
 	}
 }
 
@@ -485,7 +536,7 @@ function continueGame() {
 // Clear the contents of the game arena
 function clearGameArena() {
 	$('#category-summary').empty();
-	$('#countdown').empty();
+	$('#countdown-container').empty();
 	$('#question').empty();
 	$('#result').empty();
 }
