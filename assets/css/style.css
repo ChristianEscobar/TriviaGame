@@ -2,23 +2,72 @@
 	background-color: black;
 }
 
-#question {
-	background-image: url('../images/question-bg.png');
-	width: 765px;
-	height: 131px;
-	background-repeat: no-repeat;
-	animation-name: slideInFromLeft;
-	animation-duration: 4s;
+#question-container .col-md-8 {
+	padding: 0;
 	position: relative;
 }
 
-.choice {
-	background-image: url('../images/choice-bg.png');
-	width: 363px;
-	height: 69px;
-	margin: 0;
-	background-repeat: no-repeat;
+#qa-container {
 	position: relative;
+	display: none; /* change to none for execution */
+	left: -2000px; /* change to -1000px for execution */
+}
+
+#question {
+	position: relative;
+}
+
+#question-text {
+	position: absolute;
+	top: 25px;
+	left: 45px;
+	width: 680px;	/* must provide width and height for text centering to work */
+	height: 130px;
+	color: white;
+	font-family: 'Bangers', cursive;
+	font-size: 2.0em;
+	display: table;
+}
+
+#question-text p{
+	text-align: center;
+	vertical-align: middle;
+	display: table-cell;
+}
+
+.choice-text {
+	position: absolute;
+	top: 4px;
+	left: 20px;
+	width: 320px;	/* must provide width and height for text centering to work */
+	height: 60px;
+	color: white;
+	font-family: 'Bangers', cursive;
+	font-size: 1.5em;
+	display: table;
+	z-index: 2;
+}
+
+.choice-text p{
+	text-align: center;
+	vertical-align: middle;
+	display: table-cell;
+}
+
+.choice .choice-selected-img {
+	display: none;
+	position: absolute;
+	top: -17px;
+	left: 0;
+	z-index: 1;
+}
+
+.choice:hover {
+	cursor: pointer;
+}
+
+.choice:hover .choice-selected-img {
+	display: inline;
 }
 
 .countdown-img {
@@ -31,31 +80,30 @@
 .category {
 	cursor: pointer;
 	text-align: center;
+	font-family: 'Bangers', cursive;
+	font-size: 1.8em;
+	background-color: #cccccc;
 }
 
 .category:hover {
-	border: 1px solid #33ccff;
-	background-color: #e6f9ff;
+	/*border: 1px solid #33ccff;*/
+	/*background-color: #e6f9ff;*/
+	color: white;
+	text-shadow: 1px 1px 2px black, 0 0 25px #fff099, 0 0 50px #ffd700;
 }
 
 .category-details {
 	display: none;
-}
-
-.choice:hover {
-	background-color: red;
-	cursor: pointer;
+	font-family: 'Bangers', cursive;
+	font-size: 1.0em;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+	border-radius: 0 0 15px 15px;
+	padding: 10px;
 }
 
 .summary-button { 
 	float: left; 
 	margin-left: 5px;
-}
-
-@keyframes slideInFromLeft {
-    0%   {left:-600px; top:0px;}
-    25%  {left:200px; top:0px;}
-    50%  {left:200px; top:200px;}
-    /*75%  {left:0px; top:200px;}*/
-    /*100% {left:0px; top:0px;}*/
 }

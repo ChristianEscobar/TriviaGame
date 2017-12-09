@@ -20,7 +20,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 	<!-- Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
 </head>
 <body>
 	<div class="container">
@@ -30,7 +30,7 @@
 					Global View
 				</div>
 				<div id="gv-category-details" class="category-details">
-					(geography, space, global cultures, etc.)
+					<p>(geography, space, global cultures, etc.)</p>
 					<br>
 					<br>
 					<button type="button" data-name="global-view" class="btn btn-primary btn-lg category-start-btn" role="button">Start</button>
@@ -101,58 +101,76 @@
 		
 		<br><br><br>
 
-		<div class="row">
-			<div class="col-md-12">
-				<div id="countdown-container"></div>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-md-12">
-				<div id="question"></div>
-			</div>
+		<div class="jumbotron">
+  			<div id="countdown-container"></div>
 		</div>
 
 		<br>
-		
-		<div class="row">
-			<div class="col-md-4">
-				<div class="choice"></div>
-			</div>
-			<div class="col-md-4">
-				<div class="choice"></div>
-			</div>
-		</div>
-		
-		<br>
-		
-		<div class="row">
-			<div class="col-md-4">
-				<div class="choice"></div>
-			</div>
-			<div class="col-md-4">
-				<div class="choice"></div>
-			</div>
-		</div>
-		
-		<!--
+
 		<div class="row">
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
-				<div id="game-arena">
-					
-					<div id="category-summary"></div>
-					
-					<div id="result"></div>
-				</div>
+				<div id="category-summary"></div>
 			</div>
 			<div class="col-md-2"></div>
 		</div>
-	-->
+	
+		<div id=qa-container>
+			<div id="question-container" class="row">
+				<div class="col-md-2"></div>
+				<div class="col-md-8">
+					<div id="question">
+						<div id='question-text'></div>
+						<img id="question-img" class="img-responsive" src="assets/images/question-bg.png" alt="question">
+					</div>
+				</div>
+				<div class="col-md-2"></div>
+			</div>
+
+			<br>
+			
+			<div id="choices-container-top" class="row">
+				<div class="col-md-2"></div>
+				<div class="col-md-4">
+					<div class="choice choice-left">
+						<div id="choice-0" class="choice-text"></div>
+						<img class="img-responsive choice-img" src="assets/images/choice-bg.png" alt="choice">
+						<img class="img-responsive choice-selected-img" src="assets/images/choice-selected-bg.png" alt="choice selected">
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="choice choice-right">
+						<div id="choice-2" class="choice-text"></div>
+						<img class="img-responsive choice-img" src="assets/images/choice-bg.png" alt="choice">
+						<img class="img-responsive choice-selected-img" src="assets/images/choice-selected-bg.png" alt="choice selected">
+					</div>
+				</div>
+				<div class="col-md-2"></div>
+			</div>
+			
+			<br>
+			
+			<div id="choices-container-bot" class="row">
+				<div class="col-md-2"></div>
+				<div class="col-md-4">
+					<div class="choice choice-left">
+						<div id="choice-1" class="choice-text"></div>
+						<img class="img-responsive choice-img" src="assets/images/choice-bg.png" alt="choice">
+						<img class="img-responsive choice-selected-img" src="assets/images/choice-selected-bg.png" alt="choice selected">
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="choice choice-right">
+						<div id="choice-3" class="choice-text"></div>
+						<img class="img-responsive choice-img" src="assets/images/choice-bg.png" alt="choice">
+						<img class="img-responsive choice-selected-img" src="assets/images/choice-selected-bg.png" alt="choice selected">
+					</div>
+				</div>
+				<div class="col-md-2"></div>
+			</div>
+		</div>
 	</div>
 
-	<!--
 	<script type="text/javascript" src="assets/javascript/app.js"></script>
-	-->
 </body>
 </html>

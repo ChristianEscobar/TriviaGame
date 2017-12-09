@@ -274,7 +274,19 @@ $(document).on('click', '.category-start-btn', startCategory);
 $(document).on('click', '.summary-button', gameRestartOrContinue)
 // End Listeners
 
+// Test function for debug only
+/*
+function testFunction() {
+	$('#qa-container').css('display', 'block');
+	//$('#qa-container').animate({left:'-1000px', top:'0px'}, 'slow');
+	$('#qa-container').animate({left:'0px', top:'0px'}, 'slow');
+}
+*/
+
 function startCategory() {
+	// Slide up all category menu items
+	$('.category-details').slideUp('slow');
+
 	var category = $(this).attr('data-name');
 
 	switch(category) {
@@ -300,15 +312,30 @@ function startCategory() {
 
 	disableCategoryStartButtons(true);
 	
+	toggleQandAContainer(true);
+
 	nextQuestion();
 
 	// Store the start button object, this will be used at a later point
 	_currentCategoryStartButton = this;
 }
 
+// Displays the question and answer container
+function toggleQandAContainer(show) {
+	if(show) {
+		$('#qa-container').css('display', 'block');
+		$('#qa-container').animate({left:'0px', top:'0px'}, 'slow');
+	} else {
+		$('#qa-container').css('display', 'none');
+	}
+}
+
 // Displays the details for the selected cateogory.  Will toggle up all others.
 function displayCategory() {
 	$('.category-details').slideUp('slow');
+	$('.category').css('border', '0');
+
+	$(this).css('border', '1px solid black');
 	$('#' + this.id + '-details').slideToggle('slow');
 }
 
@@ -336,7 +363,11 @@ function nextQuestion() {
 // Displays a random question from the specified category
 function displayRandomQuestionFromCategory() {
 	// Clear previous question
-	$('#question').empty();
+	$('#question-text').empty();
+	$('#question-text').css('opacity', '0');
+
+	$('.choice-text').empty();
+	$('.choice-text').css('opacity', '0');
 
 	// Select a random position
 	var randomPos = Math.floor(Math.random() * _currentCategoryObj.questions.length);
@@ -360,23 +391,32 @@ function displayRandomQuestionFromCategory() {
 	// Get the question
 	var questionObj = _currentCategoryObj.questions[randomPos];
 
-	// Display question and choices
+	// Display question
 	var question = $('<p></p>');
 	question.text(questionObj.question);
 
-	var choices = $('<ul></ul>');
-	
+	$('#question-text').html(question);
+	$('#question-text').animate({opacity: '0.1'}, 'slow');
+	$('#question-text').animate({opacity: '0.3'}, 'slow');
+	$('#question-text').animate({opacity: '0.5'}, 'slow');
+	$('#question-text').animate({opacity: '0.8'}, 'slow');
+	$('#question-text').animate({opacity: '1.0'}, 'slow');
+
+
+	// Display choices
 	for(var i=0; i<questionObj.choices.length; i++) {
-		var choice = $('<li></li>');
+		var choice = $('<p></p>');
 		choice.attr('choice-value', questionObj.choices[i]);
-		choice.addClass('choice');
 		choice.text(questionObj.choices[i]);
 
-		choices.append(choice);
+		// Get the choice-* id using the i value
+		$('#choice-' + i).html(choice);
+		$('#choice-' + i).animate({opacity: '0.1'}, 'slow');
+		$('#choice-' + i).animate({opacity: '0.3'}, 'slow');
+		$('#choice-' + i).animate({opacity: '0.5'}, 'slow');
+		$('#choice-' + i).animate({opacity: '0.8'}, 'slow');
+		$('#choice-' + i).animate({opacity: '1.0'}, 'slow');
 	}
-
-	$('#question').append(question);
-	$('#question').append(choices);
 }
 
 // Checks the user selection for correctness
@@ -401,7 +441,7 @@ function checkAnswer() {
 
 // Starts the timer countdown
 function startCountdown() {
-	_secondsRemaining = 30;
+	_secondsRemaining = 2;
 
 	clearInterval(_intervalId);
 
@@ -536,9 +576,8 @@ function continueGame() {
 // Clear the contents of the game arena
 function clearGameArena() {
 	$('#category-summary').empty();
-	$('#countdown-container').empty();
-	$('#question').empty();
-	$('#result').empty();
+	$('#qa-container').css('display', 'none');
+	$('#qa-container').css('left', '-1000px');
 }
 
 // Enables or disables the category start buttons
