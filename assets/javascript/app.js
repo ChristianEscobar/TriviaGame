@@ -287,6 +287,9 @@ function startCategory() {
 	// Slide up all category menu items
 	$('.category-details').slideUp('slow');
 
+	// Remove borders from category menu items
+	$('.category').css('border', '0');
+
 	var category = $(this).attr('data-name');
 
 	switch(category) {
