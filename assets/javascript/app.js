@@ -474,7 +474,7 @@ function displayChoiceResult(isChoiceCorrect) {
 
 // Starts the timer countdown
 function startCountdown() {
-	_secondsRemaining = 2;
+	_secondsRemaining = 10;
 
 	clearInterval(_intervalId);
 

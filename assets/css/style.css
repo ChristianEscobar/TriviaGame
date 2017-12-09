@@ -74,7 +74,7 @@
 	font-family: 'Bangers', cursive;
 	font-size: 1.5em;
 	display: table;	/* for centering */
-	z-index: 2;
+	z-index: 99;
 }
 
 .choice-text p{
