@@ -283,12 +283,16 @@ function testFunction() {
 }
 */
 
+// Starts game with the selected category
 function startCategory() {
 	// Slide up all category menu items
 	$('.category-details').slideUp('slow');
 
 	// Remove borders from category menu items
 	$('.category').css('border', '0');
+
+	// Hide the game title
+	$('#game-title').css('display', 'none');
 
 	var category = $(this).attr('data-name');
 
@@ -424,27 +428,46 @@ function displayRandomQuestionFromCategory() {
 
 // Checks the user selection for correctness
 function checkAnswer() {
-	var userChoice = $(this).attr('choice-value');
+	// The attribute we need is buried within two divs
+	var userChoice = $('#' + $(this).attr('id') + ' > .choice-text > p').attr('choice-value');
 
 	var correctAnswer = _currentCategoryObj.questions[_currentQuestionIndex].correctAnswer;
 
 	if(userChoice === correctAnswer) {
 		_currentCategoryObj.correctAnswers++;
 
-		$('#result').html('Correct!');
+		displayChoiceResult(true);
 	} else {
 		_currentCategoryObj.incorrectAnswers++;
 
-		$('#result').html('Wrong!');
+		displayChoiceResult(false);
 	}
 
 	// Display a new question
 	nextQuestion();
 }
 
+// Displays image based on correct or incorrect user choice
+function displayChoiceResult(isChoiceCorrect) {
+	var result = $('#result');
+	result.empty();
+
+	var img = $('<img/>');
+
+	if(isChoiceCorrect) {
+		img.attr('src', './assets/images/correct.gif');
+		img.attr('alt', 'correct answer');
+	} else {
+		img.attr('src', './assets/images/wrong.gif');
+		img.attr('alt', 'incorrect answer');
+	}
+
+	result.html(img);
+}
+
 // Starts the timer countdown
 function startCountdown() {
-	_secondsRemaining = 2;
+	_secondsRemaining = 30;
 
 	clearInterval(_intervalId);
 
