@@ -349,6 +349,9 @@ function displayCategory() {
 // Displays category completion summary, if all questions in a category have been displayed.
 // Or, it will display the next question in a category.
 function nextQuestion() {
+	// Unselect all choices
+	toggleChoiceSelection(false);
+
 	if(isCategoryComplete()) {
 		// Stop the countdown
 		clearInterval(_intervalId);
@@ -375,6 +378,10 @@ function displayRandomQuestionFromCategory() {
 
 	$('.choice-text').empty();
 	$('.choice-text').css('opacity', '0');
+
+	// Hide correct answer display
+	$('#correct-answer').empty();
+	$('#correct-answer').css('display', 'none');
 
 	// Select a random position
 	var randomPos = Math.floor(Math.random() * _currentCategoryObj.questions.length);
@@ -467,7 +474,7 @@ function displayChoiceResult(isChoiceCorrect) {
 
 // Starts the timer countdown
 function startCountdown() {
-	_secondsRemaining = 30;
+	_secondsRemaining = 2;
 
 	clearInterval(_intervalId);
 
@@ -490,12 +497,62 @@ function countdown() {
 		// Update unanswered total and display an new question
 		_currentCategoryObj.unanswered++;
 
-		$('#result').html('Time\'s Up Slick!');
+		displayCorrectAnswer();
 
-		nextQuestion();
+		setTimeout(nextQuestion, 8000);
 	}
 }
 
+// Displays the correct answer
+function displayCorrectAnswer() {
+	// Display correct answer text
+	var correctAnswer = $('<p></p>');
+
+	correctAnswer.text('The correct answer was:  ' + _currentCategoryObj.questions[_currentQuestionIndex].correctAnswer);
+
+	$('#correct-answer').append(correctAnswer);
+	$('#correct-answer').css('display', 'block');
+
+	// Highlight answer
+	toggleChoiceSelection(true);
+}
+
+// Will automatically select the correct answer
+function toggleChoiceSelection(turnOn) {
+	if(turnOn) {
+		var questionsArray = _currentCategoryObj.questions[_currentQuestionIndex].choices;
+
+		var correctAnswerPos = questionsArray.findIndex(checkCorrectAnswer);
+
+		var imgSelector;
+
+		switch(correctAnswerPos) {
+			case 0:
+				imgSelector = '#choice-a > .choice-selected-img';
+				break;
+			case 1:
+				imgSelector = '#choice-b > .choice-selected-img';
+				break;
+			case 2:
+				imgSelector = '#choice-c > .choice-selected-img';
+				break;
+			case 3:
+				imgSelector = '#choice-d > .choice-selected-img';
+				break;
+		}
+
+		$(imgSelector).css('display', 'inline');
+	} else {
+		$('.choice-selected-img').css('display', 'none');
+	}
+}
+
+// Function used by findIndex in toggleChoiceSelection
+function checkCorrectAnswer(answer) {
+	return answer === _currentCategoryObj.questions[_currentQuestionIndex].correctAnswer;
+}
+
+// Sets the image for the counter based on seconds remaining
 function setCounterImage(isTimeOut) {
 	var counterImage = $('<img/>');
 	counterImage.addClass('countdown-img');
@@ -602,6 +659,8 @@ function continueGame() {
 // Clear the contents of the game arena
 function clearGameArena() {
 	$('#category-summary').empty();
+	$('#correct-answer').empty();
+	$('#correct-answer').css('display', 'none');
 	$('#qa-container').css('display', 'none');
 	$('#qa-container').css('left', '-1000px');
 }
