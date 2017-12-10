@@ -33,7 +33,8 @@
 
 #correct-answer {
 	font-family: 'Bangers', cursive;
-	font-size: 1.5em;
+	font-size: 2.5em;
+	text-shadow: 1px 1px 2px black
 }
 
 #qa-container {
@@ -64,6 +65,10 @@
 	display: table-cell;
 }
 
+#correct-answer {
+	color: #ffd700;
+}
+
 .cat-summary {
 	font-family: 'Bangers', cursive;
 	font-size: 2.0em;
@@ -74,8 +79,14 @@
 	padding-bottom: 10px;
 }
 
+.jumbotron img {
+	display:block;
+    margin-left:auto;
+    margin-right:auto;
+}
+
 .cat-summary-img {
-	width: 400px;
+	width: 350px;
 	height: 320px;
 }
 

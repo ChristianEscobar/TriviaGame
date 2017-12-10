@@ -130,7 +130,7 @@ var _writtenWord = {
 	{
 		question: 'What thighmistress squeezed out the diet guide Eat, Cheat and Melt the Fat Away?',
 		choices: ['Carmen Electra','Cindy Crawford','Suzanne Somers','Martha Steward'],
-		correctAnswer: 'Suzanne Sommers',
+		correctAnswer: 'Suzanne Somers',
 	},
 	{
 		question: 'What annual sporting event is central to Tom Clancy\'s book The Sum of All Fears?',
@@ -261,6 +261,7 @@ var _currentCategoryStartButton = null;
 var _arrayOfObjects = [_globalView, _soundAndScreen, _news, _writtenWord, _innovations, _gameTime];
 var _completedCategoryStartButtons = [];
 var _questionsAlreadyDisplayed = [];
+var _nextQuestionWaitInSecs = 2000;
 // End Global variables
 
 // Listeners
@@ -443,19 +444,26 @@ function checkAnswer() {
 	if(userChoice === correctAnswer) {
 		_currentCategoryObj.correctAnswers++;
 
-		displayChoiceResult(true);
+		displayResultImageBasedOnResult(true);
+
+		displayCorrectAnswer(true);
 	} else {
 		_currentCategoryObj.incorrectAnswers++;
 
-		displayChoiceResult(false);
+		displayResultImageBasedOnResult(false);
+
+		displayCorrectAnswer(false);
 	}
 
+	// Stop the current interval
+	clearInterval(_intervalId);
+
 	// Display a new question
-	nextQuestion();
+	setTimeout(nextQuestion, _nextQuestionWaitInSecs);
 }
 
 // Displays image based on correct or incorrect user choice
-function displayChoiceResult(isChoiceCorrect) {
+function displayResultImageBasedOnResult(isChoiceCorrect) {
 	var result = $('#result');
 	result.empty();
 
@@ -469,12 +477,22 @@ function displayChoiceResult(isChoiceCorrect) {
 		img.attr('alt', 'incorrect answer');
 	}
 
-	result.html(img);
+	// Hide the counter and display the result image
+	$('#countdown-container').css('display', 'none');
+	result.append(img);
+
+	result.css('display', 'block');
 }
 
 // Starts the timer countdown
 function startCountdown() {
-	_secondsRemaining = 1;
+	_secondsRemaining = 5;
+
+	// Hide the result image
+	$('#result').css('display', 'none');
+
+	// Display the counter
+	$('#countdown-container').css('display', 'block');
 
 	clearInterval(_intervalId);
 
@@ -497,18 +515,22 @@ function countdown() {
 		// Update unanswered total and display an new question
 		_currentCategoryObj.unanswered++;
 
-		displayCorrectAnswer();
+		displayCorrectAnswer(false);
 
-		setTimeout(nextQuestion, 8000);
+		setTimeout(nextQuestion, _nextQuestionWaitInSecs);
 	}
 }
 
 // Displays the correct answer
-function displayCorrectAnswer() {
+function displayCorrectAnswer(wasChoiceCorrect) {
 	// Display correct answer text
 	var correctAnswer = $('<p></p>');
 
-	correctAnswer.text('The correct answer was:  ' + _currentCategoryObj.questions[_currentQuestionIndex].correctAnswer);
+	if(wasChoiceCorrect) {
+		correctAnswer.text('Correct!');		
+	} else {
+		correctAnswer.text('The correct answer was:  ' + _currentCategoryObj.questions[_currentQuestionIndex].correctAnswer);		
+	}
 
 	$('#correct-answer').append(correctAnswer);
 	$('#correct-answer').css('display', 'block');
@@ -716,6 +738,11 @@ function disableCategoryStartButtons(disableValue) {
 // Determines if game should restart or continue to allow user to select
 // a new category
 function gameRestartOrContinue() {
+	// Set jumbotron to the game title
+	$('#countdown-container').css('display', 'none');
+	$('#result').css('display', 'none');
+	$('#game-title').css('display', 'block');
+
 	var choice = $(this).attr('data-name');
 
 	if(choice === 'restart') {
