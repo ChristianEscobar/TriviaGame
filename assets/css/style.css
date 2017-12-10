@@ -121,10 +121,6 @@
 	cursor: pointer;
 }
 
-.choice:hover .choice-selected-img {
-	display: inline;
-}
-
 .countdown-img {
 	display: block;
     margin: auto;
