@@ -486,7 +486,7 @@ function displayResultImageBasedOnResult(isChoiceCorrect) {
 
 // Starts the timer countdown
 function startCountdown() {
-	_secondsRemaining = 5;
+	_secondsRemaining = 30;
 
 	// Hide the result image
 	$('#result').css('display', 'none');
@@ -616,9 +616,12 @@ function displayCategoryCompleteSummary() {
 	//$('#category-summary').append(categoryName);
 	leftSide.append(categoryName);
 
+	// Append completed word
+	$('#' + _currentCategoryObj.categorySummaryId).append('<br><p>Completed</p>');
+
 	//$('#category-summary').append('<p>Total Correct:  ' + _currentCategoryObj.correctAnswers + '</p>');
 	leftSide.append('<p>Total Correct:  ' + _currentCategoryObj.correctAnswers + '</p>');
-	$('#' + _currentCategoryObj.categorySummaryId).append('<br><p>Total Correct:  ' + _currentCategoryObj.correctAnswers + '</p>');
+	$('#' + _currentCategoryObj.categorySummaryId).append('<p>Total Correct:  ' + _currentCategoryObj.correctAnswers + '</p>');
 	
 	//$('#category-summary').append('<p>Total Incorrect:  ' + _currentCategoryObj.incorrectAnswers + '</p>');
 	leftSide.append('<p>Total Incorrect:  ' + _currentCategoryObj.incorrectAnswers + '</p>');
