@@ -474,7 +474,7 @@ function displayChoiceResult(isChoiceCorrect) {
 
 // Starts the timer countdown
 function startCountdown() {
-	_secondsRemaining = 10;
+	_secondsRemaining = 1;
 
 	clearInterval(_intervalId);
 
@@ -582,35 +582,71 @@ function isCategoryComplete() {
 // Display summary of the current category on the game arena
 // Summary will also be displayed in the category menu
 function displayCategoryCompleteSummary() {
+	var leftSide = $('<div></div>');
 
-	var header = $('<h2></h2>');
+	var header = $('<h1></h1>');
 	header.text('Category Completed!');
-	$('#category-summary').append(header);
+	//$('#category-summary').append(header);
+	leftSide.append(header);
 
-	var categoryName = $('<p></p>');
+	var categoryName = $('<h2></h2>');
 	categoryName.text('Category Name:  ' + _currentCategoryObj.categoryName);
-	$('#category-summary').append(categoryName);
+	//$('#category-summary').append(categoryName);
+	leftSide.append(categoryName);
 
-	$('#category-summary').append('<p>Total Correct:  ' + _currentCategoryObj.correctAnswers + '</p>');
-	$('#' + _currentCategoryObj.categorySummaryId).append('<p>Total Correct:  ' + _currentCategoryObj.correctAnswers + '</p>');
+	//$('#category-summary').append('<p>Total Correct:  ' + _currentCategoryObj.correctAnswers + '</p>');
+	leftSide.append('<p>Total Correct:  ' + _currentCategoryObj.correctAnswers + '</p>');
+	$('#' + _currentCategoryObj.categorySummaryId).append('<br><p>Total Correct:  ' + _currentCategoryObj.correctAnswers + '</p>');
 	
-	$('#category-summary').append('<p>Total Incorrect:  ' + _currentCategoryObj.incorrectAnswers + '</p>');
+	//$('#category-summary').append('<p>Total Incorrect:  ' + _currentCategoryObj.incorrectAnswers + '</p>');
+	leftSide.append('<p>Total Incorrect:  ' + _currentCategoryObj.incorrectAnswers + '</p>');
 	$('#' + _currentCategoryObj.categorySummaryId).append('<p>Total Incorrect:  ' + _currentCategoryObj.incorrectAnswers + '</p>');
 	
-	$('#category-summary').append('<p>Total Unanswered:  ' + _currentCategoryObj.unanswered + '</p>');
+	//$('#category-summary').append('<p>Total Unanswered:  ' + _currentCategoryObj.unanswered + '</p>');
+	leftSide.append('<p>Total Unanswered:  ' + _currentCategoryObj.unanswered + '</p>');
 	$('#' + _currentCategoryObj.categorySummaryId).append('<p>Total Unanswered:  ' + _currentCategoryObj.unanswered + '</p>');
 
+	var buttons = $('<div></div>');
+	
 	var restartButton = $('<button></button>');
 	restartButton.text('Start Over');
 	restartButton.addClass('btn btn-primary btn-md summary-button');
 	restartButton.attr('data-name', 'restart');
-	$('#category-summary').append(restartButton);
+	buttons.append(restartButton);
+	//$('#category-summary').append(restartButton);
 
 	var categoryButton = $('<button></button>');
 	categoryButton.text('Select Another Category');
 	categoryButton.addClass('btn btn-primary btn-md summary-button');
 	categoryButton.attr('data-name', 'category')
-	$('#category-summary').append(categoryButton);
+	buttons.append(categoryButton);
+	//$('#category-summary').append(categoryButton);
+
+	//$('#category-summary').append(buttons);
+	leftSide.append(buttons);
+
+	// Append the left side
+	leftSide.css('float', 'left');
+	$('#category-summary').append(leftSide);
+
+	// Create the right side
+	var rightSide = $('<div></div>');
+
+	var image = $('<img/>');
+	image.attr('src', './assets/images/category-summary.gif');
+	image.attr('alt', 'crash bandicoot spin');
+	image.addClass('cat-summary-img');
+
+	rightSide.append(image);
+	rightSide.css('float', 'right');
+
+	// Append the right side
+	$('#category-summary').append(rightSide);
+
+	// Add styling
+	$('#category-summary').addClass('cat-summary');
+
+	$('#category-summary').css('display', 'block');
 }
 
 // Resets game
@@ -659,6 +695,7 @@ function continueGame() {
 // Clear the contents of the game arena
 function clearGameArena() {
 	$('#category-summary').empty();
+	$('#category-summary').css('display', 'none');
 	$('#correct-answer').empty();
 	$('#correct-answer').css('display', 'none');
 	$('#qa-container').css('display', 'none');
