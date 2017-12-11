@@ -272,7 +272,7 @@ $(document).on('click', '.choice', checkAnswer);
 
 $(document).on('click', '.category-start-btn', startCategory);
 
-$(document).on('click', '.summary-button', gameRestartOrContinue)
+$(document).on('click', '.summary-button', gameRestartOrContinue);
 
 $('.choice-text').hover(function(){
 	$(this).siblings('.choice-selected-img').css('display', 'inline');
